@@ -13,7 +13,7 @@ module.exports = {
       name: "@electron-forge/maker-squirrel",
       config: {
         name: "League-Predictor",
-        authoers: "Big Jeg",
+        authors: "Big Jeg",
         description: "An app for predicting PL results",
         iconUrl:
           "https://raw.githubusercontent.com/Broll26/league-predictor-v1/refs/heads/main/assets/icon.ico",
