@@ -16,7 +16,7 @@ module.exports = {
         authoers: "Big Jeg",
         description: "An app for predicting PL results",
         iconUrl:
-          "https://raw.githubusercontent.com/yourusername/pl-predictor/main/assets/icon.ico",
+          "https://raw.githubusercontent.com/Broll26/league-predictor-v1/refs/heads/main/assets/icon.ico",
         setupIcon: "./assets/icon.ico",
         setupExe: "League-Predictor-Setup.exe",
         noMsi: false,
