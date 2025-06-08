@@ -11,14 +11,14 @@
           type="number"
           min="0"
           v-model.number="fixtureScores[fixture.id].homeScore"
-          @change="updatePrediction(fixture.id)"
+          @input="updatePrediction(fixture.id)"
         />
         <div class="centre-column">-</div>
         <input
           type="number"
           min="0"
           v-model.number="fixtureScores[fixture.id].awayScore"
-          @change="updatePrediction(fixture.id)"
+          @input="updatePrediction(fixture.id)"
         />
         <div class="away-team">{{ fixture.awayTeamName }}</div>
       </div>
@@ -46,10 +46,8 @@
 import { computed, ref, onMounted, reactive, watch } from "vue";
 import type { Fixture } from "../types/fixtures";
 import { useFixtureData } from "../composables/useFixtureData";
-import { useElectron } from "../composables/useElectron";
 import { usePredictions } from "../composables/usePredictions";
 
-const { ping } = useElectron();
 const selectedGameweek = ref(1);
 const { parseFixtureData, getOrderedGameweek } = useFixtureData();
 const gameweekMap = parseFixtureData();
@@ -57,8 +55,19 @@ const { setPrediction, getPrediction } = usePredictions();
 
 // Track scores for all fixtures
 const fixtureScores = reactive<
-  Record<number, { homeScore: number | null; awayScore: number | null }>
+  Record<
+    number,
+    { homeScore: number | "" | null; awayScore: number | "" | null }
+  >
 >({});
+
+watch(
+  () => fixtureScores,
+  (newValue) => {
+    console.log("fixtureScores changed:", newValue);
+  },
+  { deep: true, immediate: true }
+);
 
 // Get the maximum gameweek number for pagination limits
 const maxGameweek = computed(() => {
@@ -88,7 +97,23 @@ const orderedFixtures = computed<Fixture[]>(() => {
 // Update prediction when scores change
 const updatePrediction = (fixtureId: number) => {
   const scores = fixtureScores[fixtureId];
-  setPrediction(fixtureId, scores.homeScore, scores.awayScore);
+
+  // Handle empty inputs - convert empty string or NaN to null
+  const homeScore =
+    scores.homeScore === null ||
+    scores.homeScore === "" ||
+    isNaN(scores.homeScore)
+      ? null
+      : scores.homeScore;
+  const awayScore =
+    scores.awayScore === null ||
+    scores.awayScore === "" ||
+    isNaN(scores.awayScore)
+      ? null
+      : scores.awayScore;
+
+  // Update the prediction
+  setPrediction(fixtureId, homeScore, awayScore);
 };
 
 // Initialize fixture scores from existing predictions
@@ -136,7 +161,7 @@ watch(selectedGameweek, () => {
 
 .fixture-row {
   display: grid;
-  grid-template-columns: 1fr 1.5rem 0.5rem 1.5rem 1fr;
+  grid-template-columns: 1fr 2rem 0.5rem 2rem 1fr;
   gap: 0.5rem;
 }
 

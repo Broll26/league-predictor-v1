@@ -1,4 +1,4 @@
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useFixtureData } from "./useFixtureData";
 
 export interface Prediction {
@@ -20,7 +20,10 @@ export interface TeamStats {
   goalDifference: number;
 }
 
-export function usePredictions() {
+// Create a singleton instance to ensure state is shared
+let predictionsInstance: ReturnType<typeof createPredictions> | null = null;
+
+function createPredictions() {
   // Store predictions in a Map with fixture ID as key
   const predictions = ref<Map<number, Prediction>>(new Map());
 
@@ -34,11 +37,16 @@ export function usePredictions() {
     homeScore: number | null,
     awayScore: number | null
   ) => {
+    // If both scores are null, we could optionally remove the prediction entirely
+    // But for now we'll just update it with null values
     predictions.value.set(fixtureId, {
       fixtureId,
       homeScore,
       awayScore,
     });
+
+    // Force reactivity update by creating a new Map
+    predictions.value = new Map(predictions.value);
   };
 
   // Get a prediction for a fixture
@@ -111,6 +119,7 @@ export function usePredictions() {
         const prediction = predictions.value.get(fixture.id);
 
         // Skip fixtures without complete predictions
+        // Both scores must be non-null to count the match
         if (
           !prediction ||
           prediction.homeScore === null ||
@@ -188,4 +197,11 @@ export function usePredictions() {
     isPredictionComplete,
     leagueTable,
   };
+}
+
+export function usePredictions() {
+  if (!predictionsInstance) {
+    predictionsInstance = createPredictions();
+  }
+  return predictionsInstance;
 }
