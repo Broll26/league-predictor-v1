@@ -3,6 +3,7 @@ Must:
   Add a means of inputting predicted scores - these must be saved in context when navigating between pages
   Add a means of clearing predictions
   Add a means of using inputted scores to generate a predicted table (points, GF, GA, GD)
+  Add hide/show button
 
 
 
@@ -12,6 +13,7 @@ Should:
   Add a means of obtaining current fixture lists & results for any given PL season
     Add a means of choosing whether to make predictions from current (real) results or clear the real results and make predictions from the start of the season
       Possibly allow overriding of individual fixture results?
+  Add an application icon
 
 
 
