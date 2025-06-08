@@ -215,7 +215,6 @@ input[type="number"] {
 }
 
 input[type="number"] {
-  width: 100%;
   text-align: center;
 }
 </style>

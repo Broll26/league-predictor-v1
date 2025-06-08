@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    <h1>Premier League Predictor</h1>
     <FixtureDisplay />
     <StateButtons v-model="displayState" />
     <TableDisplay v-if="displayState.isTableVisible" />

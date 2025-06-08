@@ -1,6 +1,6 @@
 <template>
   <div class="table-container">
-    <h2>Premier League Table</h2>
+    <!-- <h2>Premier League Table</h2> -->
     <table class="league-table">
       <thead>
         <tr>
@@ -42,14 +42,13 @@ const { leagueTable } = usePredictions();
 
 <style scoped>
 .table-container {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 h2 {
-  margin-bottom: 1rem;
+  margin: 0.5rem;
 }
 
 .league-table {
