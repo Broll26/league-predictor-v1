@@ -61,11 +61,10 @@ const fixtureScores = reactive<
   >
 >({});
 
-// Watch for changes in the predictions Map
+// Watch for changes in the predictions Map (e.g. when cleared)
 watch(
   predictions,
   () => {
-    // Update fixtureScores when predictions change (e.g., when cleared)
     gameweekMap.forEach((fixtures) => {
       fixtures.forEach((fixture) => {
         const prediction = getPrediction(fixture.id);
@@ -109,7 +108,7 @@ const orderedFixtures = computed<Fixture[]>(() => {
     });
   }
 
-  return fixtures || [];
+  return fixtures ?? [];
 });
 
 // Update prediction when scores change
