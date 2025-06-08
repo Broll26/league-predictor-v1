@@ -51,7 +51,7 @@ import { usePredictions } from "../composables/usePredictions";
 const selectedGameweek = ref(1);
 const { parseFixtureData, getOrderedGameweek } = useFixtureData();
 const gameweekMap = parseFixtureData();
-const { setPrediction, getPrediction } = usePredictions();
+const { setPrediction, getPrediction, predictions } = usePredictions();
 
 // Track scores for all fixtures
 const fixtureScores = reactive<
@@ -61,12 +61,30 @@ const fixtureScores = reactive<
   >
 >({});
 
+// Watch for changes in the predictions Map
 watch(
-  () => fixtureScores,
-  (newValue) => {
-    console.log("fixtureScores changed:", newValue);
+  predictions,
+  () => {
+    // Update fixtureScores when predictions change (e.g., when cleared)
+    gameweekMap.forEach((fixtures) => {
+      fixtures.forEach((fixture) => {
+        const prediction = getPrediction(fixture.id);
+        if (fixtureScores[fixture.id]) {
+          fixtureScores[fixture.id] = {
+            homeScore:
+              prediction && prediction?.homeScore !== null
+                ? prediction.homeScore
+                : null,
+            awayScore:
+              prediction && prediction?.awayScore !== null
+                ? prediction.awayScore
+                : null,
+          };
+        }
+      });
+    });
   },
-  { deep: true, immediate: true }
+  { deep: true }
 );
 
 // Get the maximum gameweek number for pagination limits

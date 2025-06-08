@@ -2,18 +2,30 @@
   <div class="app-container">
     <h1>Premier League Predictor</h1>
     <FixtureDisplay />
-    <TableDisplay />
+    <StateButtons v-model="displayState" />
+    <TableDisplay v-if="displayState.isTableVisible" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import FixtureDisplay from "./components/FixtureDisplay.vue";
 import TableDisplay from "./components/TableDisplay.vue";
-// Import usePredictions to initialize the shared state
+import StateButtons from "./components/StateButtons.vue";
 import { usePredictions } from "./composables/usePredictions";
 
 // Initialize predictions state
 usePredictions();
+
+// Define the display state
+interface DisplayState {
+  isTableVisible: boolean;
+}
+
+// Create reactive display state
+const displayState = ref<DisplayState>({
+  isTableVisible: true,
+});
 </script>
 
 <style scoped>

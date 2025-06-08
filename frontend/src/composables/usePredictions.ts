@@ -190,12 +190,18 @@ function createPredictions() {
     });
   });
 
+  const clearPredictions = () => {
+    // Clear all predictions by creating a new empty Map
+    predictions.value = new Map();
+  };
+
   return {
     predictions,
     setPrediction,
     getPrediction,
     isPredictionComplete,
     leagueTable,
+    clearPredictions,
   };
 }
 
