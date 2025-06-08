@@ -6,19 +6,20 @@ const BrowserWindow = electron.BrowserWindow;
 
 const createWindow = () => {
   const window = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
       nodeIntegration: false,
     },
+    icon: path.join(__dirname, "../../assets/icon.png"),
   });
 
   if (process.env.NODE_ENV !== "production") {
     window.loadURL("http://localhost:5173");
   } else {
-    window.loadFile(path.join(__dirname, "../frontend/dist/index.html"));
+    window.loadFile(path.join(__dirname, "../../frontend/dist/index.html"));
   }
 };
 
