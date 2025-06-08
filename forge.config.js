@@ -1,3 +1,5 @@
+const { version } = require("react");
+
 module.exports = {
   packagerConfig: {
     asar: true,
@@ -20,6 +22,7 @@ module.exports = {
         setupIcon: "./assets/icon.ico",
         setupExe: "League-Predictor-Setup.exe",
         noMsi: false,
+        version: "1.0.0.0",
       },
     },
     // Zip - Multi-Platform
