@@ -1,0 +1,6 @@
+node_modules/
+dist/
+dist-electron/
+frontend/dist/
+.vscode/
+.DS_Store

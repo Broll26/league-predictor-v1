@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "dist-electron",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "types": ["node", "electron"]
+  },
+  "include": ["electron", "src", "src/types"],
+  "exclude": ["node_modules"]
+}
