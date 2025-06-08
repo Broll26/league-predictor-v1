@@ -11,7 +11,7 @@
     "build-electron": "tsc --project electron/tsconfig.json",
     "build-and-start-electron": "npm run build-electron && npm run start-electron",
     "package": "npm run build && electron-forge package",
-    "make": "npm run build ** electron-forge make",
+    "make": "npm run build && electron-forge make",
     "generate-icons": "electron-icon-maker --input=./assets/icon.png --output=./assets"
   },
   "devDependencies": {
