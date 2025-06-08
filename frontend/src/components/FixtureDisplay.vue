@@ -165,6 +165,19 @@ watch(selectedGameweek, () => {
 </script>
 
 <style scoped>
+/* Remove spinner buttons for Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove spinner buttons for Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .fixture-table-section {
   display: flex;
   justify-content: center;
