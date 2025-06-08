@@ -1,6 +1,8 @@
-import { create } from "domain";
-import { app, BrowserWindow } from "electron";
-import * as path from "path";
+const electron = require("electron");
+const path = require("path");
+
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
 
 const createWindow = () => {
   const window = new BrowserWindow({

@@ -1,0 +1,20 @@
+Must:
+  Add a means of displaying all premier league fixtures, paginated by gameweek and sorted by kickoff time and then alphabetically by home team name.
+  Add a means of inputting predicted scores - these must be saved in context when navigating between pages
+  Add a means of clearing predictions
+  Add a means of using inputted scores to generate a predicted table (points, GF, GA, GD)
+
+
+
+
+
+Should:
+  Add a means of obtaining current fixture lists & results for any given PL season
+    Add a means of choosing whether to make predictions from current (real) results or clear the real results and make predictions from the start of the season
+      Possibly allow overriding of individual fixture results?
+
+
+
+Could:
+  Add a Content Security Policy (CSP). This is unnecessary since only Nile will be using this app but might be good learning.
+  Add tests - would be good practice.

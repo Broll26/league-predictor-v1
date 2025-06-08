@@ -1,14 +1,15 @@
 {
-  "name": "electron-vue3-app",
+  "name": "pl-predictor-v1",
   "version": "1.0.0",
-  "main": "dist-electron/main.js",
+  "main": "electron/dist/main.js",
   "scripts": {
-    "dev": "concurrently -k \"npm:start-electron\" \"npm:start-vite\"",
-    "start-electron": "wait-on http://localhost:5173 && ts-node electron/main.ts",
+    "dev": "concurrently -k \"npm:build-and-start-electron\" \"npm:start-vite\"",
+    "start-electron": "wait-on http://localhost:5173 && electron .",
     "start-vite": "cd frontend && npm run dev",
     "build": "npm run build-vite && npm run build-electron",
     "build-vite": "cd frontend && npm run build",
-    "build-electron": "tsc -p tsconfig.json"
+    "build-electron": "tsc --project electron/tsconfig.json",
+    "build-and-start-electron": "npm run build-electron && npm run start-electron"
   },
   "devDependencies": {
     "concurrently": "^8.0.1",
