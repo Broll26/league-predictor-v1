@@ -21,7 +21,7 @@ module.exports = {
           "https://raw.githubusercontent.com/Broll26/league-predictor-v1/refs/heads/main/assets/icon.ico",
         setupIcon: "./assets/icon.ico",
         setupExe: "League-Predictor-Setup.exe",
-        noMsi: false,
+        noMsi: true,
         version: "1.0.0.0",
       },
     },
