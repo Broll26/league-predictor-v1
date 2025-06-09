@@ -3,7 +3,7 @@
     <!-- <h2>Premier League Table</h2> -->
     <table class="league-table">
       <thead>
-        <tr>
+        <tr class="table-header">
           <th>Pos</th>
           <th class="team-name">Team</th>
           <th>P</th>
@@ -57,6 +57,10 @@ h2 {
   max-width: 800px;
 }
 
+.table-header {
+  color: #242424;
+}
+
 .league-table th,
 .league-table td {
   padding: 0.5rem;
@@ -79,6 +83,6 @@ h2 {
 }
 
 .league-table tbody tr:hover {
-  background-color: #f5f5f5;
+  background-color: #6b6b6b;
 }
 </style>

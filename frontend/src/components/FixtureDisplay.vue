@@ -8,6 +8,7 @@
       >
         <div class="home-team">{{ fixture.homeTeamName }}</div>
         <input
+          class="score-input"
           type="number"
           min="0"
           v-model.number="fixtureScores[fixture.id].homeScore"
@@ -15,6 +16,7 @@
         />
         <div class="centre-column">-</div>
         <input
+          class="score-input"
           type="number"
           min="0"
           v-model.number="fixtureScores[fixture.id].awayScore"
@@ -26,13 +28,18 @@
   </div>
   <div class="page-selector">
     <div></div>
-    <button @click="selectedGameweek--" :disabled="selectedGameweek <= 1">
+    <button
+      class="nav-button"
+      @click="selectedGameweek--"
+      :disabled="selectedGameweek <= 1"
+    >
       <
     </button>
     <div class="centre-column">
       {{ selectedGameweek }}
     </div>
     <button
+      class="nav-button"
       @click="selectedGameweek++"
       :disabled="selectedGameweek >= maxGameweek"
     >
@@ -178,6 +185,12 @@ input[type="number"] {
   appearance: textfield;
 }
 
+.score-input {
+  border: 0.5px solid white;
+  border-radius: 4px;
+  text-align: center;
+}
+
 .fixture-table-section {
   display: flex;
   justify-content: center;
@@ -200,7 +213,9 @@ input[type="number"] {
 }
 
 .centre-column {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .away-team {
@@ -208,7 +223,7 @@ input[type="number"] {
 }
 
 .page-selector {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: grid;
   grid-template-columns: 1fr 1.5rem 1rem 1.5rem 1fr;
   gap: 0.5rem;

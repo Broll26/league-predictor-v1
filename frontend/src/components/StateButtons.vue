@@ -3,7 +3,7 @@
     <button class="action-button" @click="toggleTableVisibility">
       {{ modelValue.isTableVisible ? "Hide Table" : "Show Table" }}
     </button>
-    <button class="action-button clear-button" @click="clearPredictions">
+    <button class="action-button" @click="clearPredictions">
       Clear All Predictions
     </button>
   </div>
@@ -47,7 +47,7 @@ const toggleTableVisibility = () => {
 
 .action-button {
   padding: 0.5rem 1rem;
-  background-color: #f2f2f2;
+  background-color: #454343;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
@@ -56,12 +56,7 @@ const toggleTableVisibility = () => {
 }
 
 .action-button:hover {
-  background-color: #e6e6e6;
-}
-
-.clear-button {
-  background-color: #fff0f0;
-  border-color: #ffcccc;
+  background-color: #6b6b6b;
 }
 
 .clear-button:hover {
