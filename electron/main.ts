@@ -16,10 +16,12 @@ const createWindow = () => {
     icon: path.join(__dirname, "../../assets/icon.png"),
   });
 
-  if (process.env.NODE_ENV !== "production") {
+  // Log the paths we're trying to load
+  if (!app.isPackaged) {
     window.loadURL("http://localhost:5173");
   } else {
-    window.loadFile(path.join(__dirname, "../../frontend/dist/index.html"));
+    const htmlPath = path.join(__dirname, "../../frontend/dist/index.html");
+    window.loadFile(htmlPath);
   }
 };
 
